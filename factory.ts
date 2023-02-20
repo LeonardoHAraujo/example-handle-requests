@@ -36,13 +36,13 @@ class UseCaseC implements UseCaseStrategy<{ name: string, age: number }, void> {
 }
 
 class UseCaseFactory {
-  readonly useCases: UseCaseStrategy<any, any>[]
+  readonly useCases: UseCaseStrategy<Object, Object | void>[]
 
-  constructor(...args: UseCaseStrategy<any, any>[]) {
+  constructor(...args: UseCaseStrategy<Object, Object | void>[]) {
     this.useCases = args
   }
 
-  public getUseCase(path: string, method: string): UseCaseStrategy<any, any> {
+  public getUseCase(path: string, method: string): UseCaseStrategy<Object, Object | void> {
     const usecase = this.useCases.find(useCase => useCase.condition({ path, method }))
 
     if (usecase === undefined) {
